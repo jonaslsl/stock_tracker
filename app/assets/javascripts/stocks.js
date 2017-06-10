@@ -17,6 +17,7 @@ init_stock_lookup = function(){
 		}else{
 			$('#stock-lookup-results').replaceWith('');
 			$('#stock-lookup-errors').replaceWith("Stock not found");
+			hide_spinner();
 		}
 
 	});
