@@ -36,26 +36,31 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
     <![endif]-->
   </head>
-  <body>
-
-    <div class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">FinanceTracker</a>
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
-          </ul>
+  <body>  
+    <%= link_to 'Finance Tracker', root_path, class: "navbar-brand" %>
+    <% if current_user %>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <div class="nav navbar-nav col-md-6">
+          <li><%= link_to "My Portfolio", my_portfolio_path %></li>
+          <li><%= link_to "My Profile", edit_registration_path(current_user) %></li>
+          <!-- <li><%= link_to "Link3", "/path3" %></li> -->
+        </div>
+        <div class="nav navbar-right col-md-4">
+          <li class="col-md-8 user-name text-right">
+          <i class="fa fa-user"></i>
+            <%= current_user.full_name.present? ? current_user.full_name : current_user.email %>
+          </li>
+          <li class="col-md-4 logout"><%= link_to("Logout", destroy_user_session_path,
+                              class: 'btn btn-xs btn-danger', method: :delete) %></li>
         </div>
       </div>
-    </div>
-
+    <% end %>
+      
     <div class="container">
       <div class="row">
         <div class="col-lg-9">
